@@ -6,3 +6,9 @@ start:
 
 publish: 
 	npm publish
+
+make lint: 
+	npm run eslint
+
+start:
+	abel-node src/bin/brain-games.js
