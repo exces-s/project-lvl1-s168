@@ -19,7 +19,7 @@
     "babel-cli": "*",
     "babel-core": "*",
     "babel-preset-env": "*",
-    "babel-preset-stage-0": "*"
+    "babel-preset-stage-0": "*",
     "babel-eslint": "^8.0.2",
     "eslint": "^4.11.0",
     "eslint-config-airbnb-base": "^12.1.0",
