@@ -11,4 +11,4 @@ make lint:
 	npm run eslint
 
 start:
-	abel-node src/bin/brain-games.js
+	babel-node src/bin/brain-games.js

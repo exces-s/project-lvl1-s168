@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 
-import knowName from '..';
+import findOutName from '..';
 
 console.log("Welcome to the Brain Games");
-knowName();
+findOutName();
