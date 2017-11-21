@@ -26,10 +26,10 @@ export const checkEven = (userName) => {
 
     const checkResult = (integer) => {
       const result = readlineSync.question(`Question: ${integer} `);
-      if (result === isEven(randomInteger)) {
+      if (result === isEven(integer)) {
         console.log('Correct!');
         return verifyEven(acc + 1);
-      } else if (isEven(randomInteger) === 'yes') {
+      } else if (isEven(integer) === 'yes') {
         console.log("'no' is wrong answer ;(. Correct answer was 'yes'");
       } else {
         console.log("'yes' is wrong answer ;(. Correct answer was 'no'");
