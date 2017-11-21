@@ -22,10 +22,10 @@ export const checkEven = (userName) => {
       return Math.round(random);
     };
 
-    const isEven = randomInteger => (randomInteger % 2 === 0 ? 'yes' : 'no');
+    const isEven = integer => (integer % 2 === 0 ? 'yes' : 'no');
 
-    const checkResult = (randomInteger) => {
-      const result = readlineSync.question(`Question: ${randomInteger} `);
+    const checkResult = (integer) => {
+      const result = readlineSync.question(`Question: ${integer} `);
       if (result === isEven(randomInteger)) {
         console.log('Correct!');
         return verifyEven(acc + 1);
@@ -34,6 +34,7 @@ export const checkEven = (userName) => {
       } else {
         console.log("'yes' is wrong answer ;(. Correct answer was 'no'");
       }
+      return null;
     };
     return checkResult(randomInteger());
   };

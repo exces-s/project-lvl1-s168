@@ -8,8 +8,8 @@ publish:
 	npm publish
 
 lint: 
-	npm run eslint -- src
-	npm run eslint -- src/bin
+	npm run eslint -- src/*.js
+	npm run eslint -- src/bin/*.js
 
 start:
 	babel-node
