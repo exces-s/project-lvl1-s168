@@ -4,8 +4,8 @@
   "description": "something",
   "main": "dist/src/bin/brain-games.js",
   "bin": {
-    "brain-games": "dist/bin/brain-games.js"
-    "brain-even": "dist/bin/brain-even.js" 
+    "brain-games": "dist/bin/brain-games.js",
+    "brain-even": "dist/bin/brain-even.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
