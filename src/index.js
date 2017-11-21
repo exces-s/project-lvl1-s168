@@ -1,42 +1,39 @@
-import readlineSync from 'readline-sync';
+export const welcome = () => 'Welcome to the Brain Games';
 
-
-export const findOutName = () => {
-  const userName = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${userName}!`);
-  return userName;
+export const makePair = (a, b) => (message) => {
+  switch (message) {
+    case 'car':
+      return a;
+    case 'cdr':
+      return b;
+    default:
+      return null;
+  }
 };
 
+export const getFirstNum = pair => pair('car');
+export const getSecondNum = pair => pair('cdr');
 
-export const checkEven = (userName) => {
-  const verifyEven = (acc) => {
-    if (acc >= 3) {
-      console.log(`Congratulations, ${userName}!`);
-      return null;
-    }
+export const multipli = pair => getFirstNum(pair) * getSecondNum(pair);
+export const add = pair => getFirstNum(pair) + getSecondNum(pair);
+export const sub = pair => getFirstNum(pair) - getSecondNum(pair);
 
-    const randomInteger = () => {
-      const min = 1;
-      const max = 100;
-      const random = (min + Math.random()) * max;
-      return Math.round(random);
-    };
+export const randomInt = (min, max) => {
+  const random = ((min - 0.5) + Math.random()) * (max - min);
+  return Math.round(random);
+};
 
-    const isEven = integer => (integer % 2 === 0 ? 'yes' : 'no');
-
-    const checkResult = (integer) => {
-      const result = readlineSync.question(`Question: ${integer} `);
-      if (result === isEven(integer)) {
-        console.log('Correct!');
-        return verifyEven(acc + 1);
-      } else if (isEven(integer) === 'yes') {
-        console.log("'no' is wrong answer ;(. Correct answer was 'yes'");
-      } else {
-        console.log("'yes' is wrong answer ;(. Correct answer was 'no'");
-      }
-      return null;
-    };
-    return checkResult(randomInteger());
-  };
-  return verifyEven(0);
+export const getRandomOperation = (pair, numberOfOperations) => {
+  const random = randomInt(1, numberOfOperations);
+  switch (random) {
+    case 1:
+      console.log(`${getFirstNum(pair)} * ${getSecondNum(pair)}`);
+      return multipli(pair);
+    case 2:
+      console.log(`${getFirstNum(pair)} + ${getSecondNum(pair)}`);
+      return add(pair);
+    default:
+      console.log(`${getFirstNum(pair)} - ${getSecondNum(pair)}`);
+      return sub(pair);
+  }
 };

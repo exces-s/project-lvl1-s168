@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-import { findOutName } from '..';
-
-console.log('Welcome to the Brain Games');
+import { findOutName } from '../games/findOutName';
 
 findOutName();

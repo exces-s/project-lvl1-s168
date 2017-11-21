@@ -1,9 +1,6 @@
 install:
 	npm install
 
-start:
-	npm run babel-node
-
 publish: 
 	npm publish
 
