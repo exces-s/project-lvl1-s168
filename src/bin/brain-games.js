@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-import { findOutName } from '../games/findOutName';
+import whatIsYourName from '../games/whatIsYourName';
 
-findOutName();
+whatIsYourName();
