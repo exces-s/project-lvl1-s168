@@ -76,14 +76,11 @@ export const calcOperation = () => {
   return randomCalcOperation(pair);
 };
 
-
-export const gcdOperation = (pair) => {
+const gcdConditions = (pair) => {
   const getA = car(pair);
   const getB = cdr(pair);
 
-  if (getA < getB) {
-    return gcdOperation(cons(getB, getA));
-  } else if (getA === 0 || getB === 0) {
+  if (getA === 0 || getB === 0) {
     const screenText = (`${getA} ${getB}`);
     const result = 0;
     return makeOperationInfo(result, screenText);
@@ -97,20 +94,32 @@ export const gcdOperation = (pair) => {
     return makeOperationInfo(result, screenText);
   } else if (getA % 2 === 0 && getB % 2 === 0) {
     const screenText = (`${getA} ${getB}`);
-    const result = 2 * getResult(gcdOperation(cons(getA / 2, getB / 2)));
+    const result = 2 * getResult(gcdConditions(cons(getA / 2, getB / 2)));
     return makeOperationInfo(result, screenText);
   } else if (getA % 2 === 0 && getB % 2 !== 0) {
     const screenText = (`${getA} ${getB}`);
-    const result = getResult(gcdOperation(cons(getA / 2, getB)));
+    const result = getResult(gcdConditions(cons(getA / 2, getB)));
     return makeOperationInfo(result, screenText);
   } else if (getA % 2 !== 0 && getB % 2 === 0) {
     const screenText = (`${getA} ${getB}`);
-    const result = getResult(gcdOperation(cons(getA, getB / 2)));
+    const result = getResult(gcdConditions(cons(getA, getB / 2)));
+    return makeOperationInfo(result, screenText);
+  } else if (getA % 2 !== 0 && getB % 2 !== 0 && getB > getA) {
+    const screenText = (`${getA} ${getB}`);
+    const result = getResult(gcdConditions(cons(getA, (getB - getA) / 2)));
     return makeOperationInfo(result, screenText);
   }
   const screenText = (`${getA} ${getB}`);
-  const result = getResult(gcdOperation(cons((getA - getB) / 2, getB)));
+  const result = getResult(gcdConditions(cons((getA - getB) / 2, getB)));
   return makeOperationInfo(result, screenText);
+};
+
+
+export const gcdOperation = () => {
+  const a = randomInt(1, 20);
+  const b = randomInt(1, 20);
+  const gcdPair = a < b ? cons(b, a) : cons(a, b);
+  return gcdConditions(gcdPair);
 };
 
 
@@ -118,12 +127,11 @@ export const checkResult = (gameOperation, userName) => {
   const iter = (acc) => {
     // console.log(gcdOperation(gameOperation));
     if (acc >= 3) {
-      console.log(`Congratulations, ${userName}!`);
+      console.log(`\nCongratulations, ${userName}!`);
       return (`Congratulations, ${userName}!`);
     }
     const operation = gameOperation();
     const operationResult = getResult(operation);
-console.log(operationResult);
     const userInput = readlineSync.question(`Question: ${getScreenText(operation)} `);
 
     if (userInput === String(operationResult)) {

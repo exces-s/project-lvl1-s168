@@ -1,6 +1,6 @@
 {
   "name": "brain-games-lebedev--av",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "something",
   "main": "dist/src/bin/brain-games.js",
   "bin": {
