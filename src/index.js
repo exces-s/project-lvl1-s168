@@ -131,7 +131,7 @@ export const checkResult = (gameOperation, userName) => {
     }
     const operation = gameOperation();
     const operationResult = getResult(operation);
-    console.log(`!!!Ответ для отладки: ${operationResult}`);
+    // console.log(`!!!ОТВЕТ ДЛЯ ОТЛАДКИ: ${operationResult}`);
     const userInput = readlineSync.question(`Question: ${getScreenText(operation)} `);
 
     if (userInput === String(operationResult)) {
