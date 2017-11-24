@@ -1,24 +1,25 @@
-import { car, cdr, cons, makeOperationInfo, randomInt, playGame } from '..';
+import { car, cdr, cons, randomInt, playGame } from '..';
+
 
 const multipli = (pair) => {
   const result = car(pair) * cdr(pair);
   const screenText = (`${car(pair)} * ${cdr(pair)}`);
-  return makeOperationInfo(result, screenText);
+  return cons(result, screenText);
 };
 
 const add = (pair) => {
   const screenText = (`${car(pair)} + ${cdr(pair)}`);
   const result = car(pair) + cdr(pair);
-  return makeOperationInfo(result, screenText);
+  return cons(result, screenText);
 };
 
 const sub = (pair) => {
   const screenText = (`${car(pair)} - ${cdr(pair)}`);
   const result = car(pair) - cdr(pair);
-  return makeOperationInfo(result, screenText);
+  return cons(result, screenText);
 };
 
-export const calculator = () => {
+const calculator = () => {
   const randomCalcOperation = (pair) => {
     const random = randomInt(1, 3);
     switch (random) {
@@ -39,9 +40,8 @@ export const calculator = () => {
 
 
 const calc = () => {
-  const gameType = () => calculator();
   const gameRules = 'What is the result of the expression?';
-  playGame(gameType, gameRules);
+  playGame(calculator, gameRules);
 };
 
 

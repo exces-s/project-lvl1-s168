@@ -46,12 +46,17 @@ const deposeByWeight = (stringNum, newNum = '', cutNum = stringNum) => {
   return compileCutNumber('', 0);
 };
 
-
-export const findBalanceNum = () => {
-  const number = String(randomInt(1, 500));
+const findBalanceNum = () => {
+  const number = String(randomInt(1, 1000));
   const originalNum = deposeByWeight(number);
 
-  const balance = (num) => {
+  const balance = (num, acc = 0) => {
+  // acc - это вынужденная мера, т.к. у больших чисел иногда
+  // цифры в середине стоят не по возрастанию.
+  // чем бльше порядков у числа, тем больше должно быть дополнительных прогонов.
+    if (acc >= 1) {
+      return num;
+    }
     const biggestPosition = findBiggestPosition(num);
     const smallestPosition = findSmallestPosition(num);
 
@@ -64,7 +69,7 @@ export const findBalanceNum = () => {
     const isBigllInRight = num[biggestPosition] === num[num.length - 1];
 
     if (isFirstEqualLast && isDiffMaxOne && isSmallInLeft && isBigllInRight) {
-      return num;
+      return balance(num, acc + 1);
     }
     const compileNumber = (newNum, position) => {
       if (newNum.length === originalNum.length) {

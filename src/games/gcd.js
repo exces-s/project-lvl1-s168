@@ -1,56 +1,33 @@
-import { car, cdr, cons, getResult, makeOperationInfo, randomInt, playGame } from '..';
+import { cons, randomInt, playGame } from '..';
 
 
-const gcdConditions = (pair) => {
-  const getA = car(pair);
-  const getB = cdr(pair);
-
-  if (getA === 0 || getB === 0) {
-    const screenText = (`${getA} ${getB}`);
-    const result = 0;
-    return makeOperationInfo(result, screenText);
-  } else if (getA === getB) {
-    const screenText = (`${getA} ${getB}`);
-    const result = getA;
-    return makeOperationInfo(result, screenText);
-  } else if (getA === 1 || getB === 1) {
-    const screenText = (`${getA} ${getB}`);
-    const result = 1;
-    return makeOperationInfo(result, screenText);
-  } else if (getA % 2 === 0 && getB % 2 === 0) {
-    const screenText = (`${getA} ${getB}`);
-    const result = 2 * getResult(gcdConditions(cons(getA / 2, getB / 2)));
-    return makeOperationInfo(result, screenText);
-  } else if (getA % 2 === 0 && getB % 2 !== 0) {
-    const screenText = (`${getA} ${getB}`);
-    const result = getResult(gcdConditions(cons(getA / 2, getB)));
-    return makeOperationInfo(result, screenText);
-  } else if (getA % 2 !== 0 && getB % 2 === 0) {
-    const screenText = (`${getA} ${getB}`);
-    const result = getResult(gcdConditions(cons(getA, getB / 2)));
-    return makeOperationInfo(result, screenText);
-  } else if (getA % 2 !== 0 && getB % 2 !== 0 && getB > getA) {
-    const screenText = (`${getA} ${getB}`);
-    const result = getResult(gcdConditions(cons(getA, (getB - getA) / 2)));
-    return makeOperationInfo(result, screenText);
+const findGcd = (a, b) => {
+  console.log(a, b);
+  if (a < b) {
+    return findGcd(b, a);
   }
-  const screenText = (`${getA} ${getB}`);
-  const result = getResult(gcdConditions(cons((getA - getB) / 2, getB)));
-  return makeOperationInfo(result, screenText);
+  if (a - b === 0) {
+    console.log(b);
+    return b;
+  }
+  if (a - b >= b) {
+    return findGcd(a - b, b);
+  }
+  // a - b < b
+  return findGcd(b, a - b);
 };
 
 const gcdOperation = () => {
   const a = randomInt(1, 20);
   const b = randomInt(1, 20);
-  const gcdPair = a < b ? cons(b, a) : cons(a, b);
-  return gcdConditions(gcdPair);
+  const screenText = (`${a} ${b}`);
+  const result = findGcd(a, b);
+  return cons(result, screenText);
 };
-
 
 const gcd = () => {
   const gameRules = 'Find the greatest common divisor of given numbers.';
-  const gameType = () => gcdOperation();
-  playGame(gameType, gameRules);
+  playGame(gcdOperation, gameRules);
 };
 
 

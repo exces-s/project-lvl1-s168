@@ -25,7 +25,6 @@ export const cons = (a, b) => (message) => {
 export const car = pair => pair('car');
 export const cdr = pair => pair('cdr');
 
-export const makeOperationInfo = (resultOperation, screenText) => cons(resultOperation, screenText);
 export const getResult = operationInfo => car(operationInfo);
 export const getScreenText = operationInfo => cdr(operationInfo);
 
@@ -42,14 +41,14 @@ export const checkResult = (gameOperation, userName) => {
     }
     const operation = gameOperation();
     const operationResult = getResult(operation);
-    // console.log(`!!!ОТВЕТ ДЛЯ ОТЛАДКИ: ${operationResult}`);
+    // console.log(`!!!ANSWER FOR DEBUG: ${operationResult}`);
     const userInput = readlineSync.question(`Question: ${getScreenText(operation)} `);
 
     if (userInput === String(operationResult)) {
-      console.log('it\'s goddamn right!\n');
+      console.log('Correct\n');
       return iter(acc + 1);
     }
-    console.log('Wrong!');
+    console.log(`'${userInput}' is wrong answer ;(. Correct answer was '${operationResult}'`);
     return ('Wrong!');
   };
   return iter(0);
@@ -57,6 +56,5 @@ export const checkResult = (gameOperation, userName) => {
 
 export const playGame = (gameType, gameRules) => {
   const userName = greeting(gameRules);
-
   checkResult(gameType, userName);
 };
