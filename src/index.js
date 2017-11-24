@@ -6,7 +6,7 @@ export const greeting = (rulesPhrase = '') => {
   const nameQuestion = ('\nMay I have your name? ');
   console.log(`${welcome}${nameQuestion}`);
   const userName = readlineSync.question();
-  console.log(`Hello, ${userName}!`);
+  console.log(`Hello, ${userName}!\n`);
   return userName;
 };
 
@@ -41,7 +41,7 @@ export const checkResult = (gameOperation, userName) => {
     }
     const operation = gameOperation();
     const operationResult = getResult(operation);
-    console.log(`!!!ANSWER FOR DEBUG: ${operationResult}`);
+    // console.log(`!!!ANSWER FOR DEBUG: ${operationResult}`);
     const userInput = readlineSync.question(`Question: ${getScreenText(operation)} `);
 
     if (userInput === String(operationResult)) {
