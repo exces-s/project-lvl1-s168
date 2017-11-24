@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-import whatIsYourName from '../games/whatIsYourName';
+import welcome from '../games/welcome';
 
-whatIsYourName();
+welcome();
