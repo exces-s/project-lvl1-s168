@@ -3,7 +3,7 @@ import readlineSync from 'readline-sync';
 
 export const greeting = (rulesPhrase = '') => {
   const welcome = (`Welcome to the Brain Games \n${rulesPhrase}\n`);
-  const nameQuestion = ('May I have your name? ');
+  const nameQuestion = ('\nMay I have your name? ');
   console.log(`${welcome}${nameQuestion}`);
   const userName = readlineSync.question();
   console.log(`Hello, ${userName}!`);
@@ -36,12 +36,12 @@ export const randomInt = (min, max) => {
 export const checkResult = (gameOperation, userName) => {
   const iter = (acc) => {
     if (acc >= 3) {
-      console.log(`\nCongratulations, ${userName}!`);
+      console.log(`Congratulations, ${userName}!`);
       return (`Congratulations, ${userName}!`);
     }
     const operation = gameOperation();
     const operationResult = getResult(operation);
-    // console.log(`!!!ANSWER FOR DEBUG: ${operationResult}`);
+    console.log(`!!!ANSWER FOR DEBUG: ${operationResult}`);
     const userInput = readlineSync.question(`Question: ${getScreenText(operation)} `);
 
     if (userInput === String(operationResult)) {
