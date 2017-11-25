@@ -1,41 +1,30 @@
-import { car, cdr, cons, randomInt, playGame } from '..';
+import { cons, randomInt, playGame } from '..';
 
 
-const multipli = (pair) => {
-  const result = car(pair) * cdr(pair);
-  const screenText = (`${car(pair)} * ${cdr(pair)}`);
-  return cons(result, screenText);
-};
-
-const add = (pair) => {
-  const screenText = (`${car(pair)} + ${cdr(pair)}`);
-  const result = car(pair) + cdr(pair);
-  return cons(result, screenText);
-};
-
-const sub = (pair) => {
-  const screenText = (`${car(pair)} - ${cdr(pair)}`);
-  const result = car(pair) - cdr(pair);
-  return cons(result, screenText);
-};
+const multipli = (a, b) => a * b;
+const add = (a, b) => a + b;
+const sub = (a, b) => a - b;
 
 const calculator = () => {
-  const randomCalcOperation = (pair) => {
-    const random = randomInt(1, 3);
-    switch (random) {
-      case 1:
-        return multipli(pair);
-      case 2:
-        return add(pair);
-      default:
-        return sub(pair);
-    }
-  };
+  const a = randomInt(1, 9);
+  const b = randomInt(1, 9);
 
-  const num1 = randomInt(1, 9);
-  const num2 = randomInt(1, 9);
-  const pair = cons(num1, num2);
-  return randomCalcOperation(pair);
+  const randomCalcOperation = (num1, num2) => {
+    const random = randomInt(1, 3);
+    if (random === 1) {
+      const screenText = `${num1} * ${num2}`;
+      const result = multipli(num1, num2);
+      return cons(result, screenText);
+    } else if (random === 2) {
+      const screenText = `${num1} + ${num2}`;
+      const result = add(num1, num2);
+      return cons(result, screenText);
+    }
+    const screenText = `${num1} - ${num2}`;
+    const result = sub(num1, num2);
+    return cons(result, screenText);
+  };
+  return randomCalcOperation(a, b);
 };
 
 
