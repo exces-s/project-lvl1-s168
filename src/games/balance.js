@@ -1,4 +1,5 @@
-import { randomInt, playGame, cons } from '..';
+import { cons } from 'hexlet-pairs';
+import { randomInt, playGame } from '..';
 
 
 const createNumeral = (summNumbers, amountNumbers) => {

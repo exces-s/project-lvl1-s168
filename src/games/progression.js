@@ -1,4 +1,5 @@
-import { randomInt, cons, playGame } from '..';
+import { cons, car, cdr, toString } from 'hexlet-pairs'; // eslint-disable-line
+import { randomInt, playGame } from '..';
 
 const invisNumPosition = () => {
   const num = randomInt(1, 7);

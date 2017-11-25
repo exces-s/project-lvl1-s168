@@ -1,13 +1,12 @@
-import { cons, randomInt, playGame } from '..';
+import { cons } from 'hexlet-pairs'; // eslint-disable-line
+import { randomInt, playGame } from '..';
 
 
 const findGcd = (a, b) => {
-  console.log(a, b);
   if (a < b) {
     return findGcd(b, a);
   }
   if (a - b === 0) {
-    console.log(b);
     return b;
   }
   if (a - b >= b) {

@@ -1,4 +1,5 @@
-import { cons, randomInt, playGame } from '..';
+import { cons } from 'hexlet-pairs'; // eslint-disable-line
+import { randomInt, playGame } from '..';
 
 
 const multipli = (a, b) => a * b;
