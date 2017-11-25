@@ -13,19 +13,6 @@ export const greeting = (rulesPhrase = '') => {
 
 export const numToString = num => String(num);
 
-// export const cons = (a, b) => (message) => {
-//   switch (message) {
-//     case 'car':
-//       return a;
-//     case 'cdr':
-//       return b;
-//     default:
-//       return null;
-//   }
-// };
-// export const car = pair => pair('car');
-// export const cdr = pair => pair('cdr');
-
 export const getResult = operationInfo => car(operationInfo);
 export const getScreenText = operationInfo => cdr(operationInfo);
 
