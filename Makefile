@@ -1,10 +1,10 @@
 install:
 	npm install
 
-publish: 
+publish:
 	npm publish
 
-lint: 
+lint:
 	npm run eslint -- src/*.js
 	npm run eslint -- src/bin/*.js
 
