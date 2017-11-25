@@ -19,28 +19,28 @@ const summ = (stringNumber) => {
   return addNums(0, 0);
 };
 
-const balanceNumber = () => {
+const createBalance = () => {
   const number = String(randomInt(1, 9000));
   const numeralsSumm = summ(number);
   const numLength = number.length;
 
-  const createBalance = (length, acc, summNumbers) => {
+  const balanceNumber = (length, acc, summNumbers) => {
     if (acc.length === number.length) {
       return acc;
     }
     const newNum = createNumeral(summNumbers, length);
     const newAcc = `${acc}${newNum}`;
-    return createBalance(length - 1, newAcc, summNumbers - newNum);
+    return balanceNumber(length - 1, newAcc, summNumbers - newNum);
   };
   const screenText = number;
-  const result = createBalance(numLength, '', numeralsSumm);
+  const result = balanceNumber(numLength, '', numeralsSumm);
   return cons(result, screenText);
 };
 
 
 const balance = () => {
   const gameRules = 'Balance the given number.';
-  return playGame(balanceNumber, gameRules);
+  return playGame(createBalance, gameRules);
 };
 
 export default balance;
