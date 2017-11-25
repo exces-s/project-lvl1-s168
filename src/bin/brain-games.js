@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import welcome from '../games/welcome';
+import welcome from '../welcome';
 
 
 welcome();

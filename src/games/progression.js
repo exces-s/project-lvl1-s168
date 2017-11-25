@@ -1,36 +1,39 @@
 import { cons, car, cdr, toString } from 'hexlet-pairs'; // eslint-disable-line
 import { randomInt, playGame } from '..';
 
-const invisNumPosition = () => {
-  const num = randomInt(1, 7);
-  return num % 2 === 0 ? num + 1 : num;
+const generateProgressMember = (progressStep, firstMember, seqNumber) => {
+  const progressMember = firstMember + ((seqNumber - 1) * progressStep);
+  return progressMember;
 };
 
-const createProgression = () => {
-  const invisNumPos = invisNumPosition();
+const createProgression = (progressStep, firstMember, seqNumber = 1) => {
+  if (seqNumber > 10) {
+    return ''; // generateProgressMember(progressStep, firstMember, seqNumber);
+  }
+  const nextMember = generateProgressMember(progressStep, firstMember, seqNumber);
+  const progression = `${nextMember} ${createProgression(progressStep, firstMember, seqNumber + 1)} `;
+  return progression;
+};
+
+const screenText = (progression, invisMember) => progression.replace(invisMember, '..');
+
+const progressionGame = () => {
   const progressStep = randomInt(1, 7);
+  const invisSeqMember = randomInt(1, 4);
+  const firstMember = randomInt(1, 8);
 
-  const compileProgression = (progression, accNum) => {
-    if (progression.length >= 27) {
-      return progression;
-    }
-    if (accNum / progressStep === invisNumPos) {
-      const newProgression = `${progression}.. `;
-      return compileProgression(newProgression, accNum + progressStep);
-    }
-    const newProgression = `${progression}${String(accNum)} `;
-    return compileProgression(newProgression, accNum + progressStep);
-  };
+  const progression = createProgression(progressStep, firstMember);
+  const invisMember = generateProgressMember(progressStep, firstMember, invisSeqMember);
+  const screenTextProg = screenText(progression, invisMember);
 
-  const result = invisNumPos * progressStep;
-  const screenText = compileProgression('', 0);
-  return cons(result, screenText);
+  return cons(invisMember, screenTextProg);
 };
 
 
 const progress = () => {
   const gameRules = 'What number is missing in this progression?';
-  playGame(createProgression, gameRules);
+  playGame(progressionGame, gameRules);
 };
+
 
 export default progress;
